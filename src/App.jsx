@@ -1,9 +1,10 @@
 import './App.css'
+import StarterPage from './Starter/StarterPage'
 
 function App () {
   return (
     <>
-      <h1>KanbanFlow</h1>
+      <StarterPage />
     </>
   )
 }

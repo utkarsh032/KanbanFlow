@@ -1,1 +1,89 @@
 @import 'tailwindcss';
+
+.btn1,
+.btn2 {
+  border: 1px solid #333;
+  padding: 10px 24px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Primary button */
+.btn1 {
+  background-color: #222; /* dark bg */
+  color: #fff;
+}
+
+.btn1:hover {
+  background-color: #333;
+  border-color: #444;
+}
+
+/* Secondary button */
+.btn2 {
+  background-color: transparent;
+  color: #fff;
+}
+
+.btn2:hover {
+  background-color: #111;
+  border-color: #444;
+}
+
+/* heading */
+.heading,
+.sub-heading {
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(to right, #fff, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sub-heading {
+  background: linear-gradient(45deg, #333, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Card */
+.card {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 280px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.card:hover {
+  border-color: #444;
+  transform: translateY(-4px);
+}
+
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.card-details {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #aaa;
+}
