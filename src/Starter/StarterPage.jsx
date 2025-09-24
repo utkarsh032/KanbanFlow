@@ -6,7 +6,7 @@ import { CardSection } from '../Components/Card/CardSection'
 
 export default function StarterPage () {
   return (
-    <div>
+    <div className='min-h-screen px-6 md:px-12 lg:px-24 py-8 flex flex-col'>
       {/* HEADER */}
       <header className='flex justify-between items-center'>
         <KanbanFlow />
