@@ -1,33 +1,36 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, Navigate } from 'react-router-dom'
 import './App.css'
 import StarterPage from './Starter/StarterPage'
 import AuthUI from './UI/AuthUI'
 import { SignIn } from './Components/AuthPage.jsx/SignIn'
 import SignUp from './Components/AuthPage.jsx/SignUp'
-import ProtectedRoute from './Components/ProtectRoute/ProtectedRoute'
 import { Dashboard } from './Components/Dashboard'
+import { useAuth } from './context/AuthContext'
 
 function App () {
+  const { user } = useAuth()
+
   return (
     <Routes>
-      {/* Starter / Landing Page */}
-      <Route path='/' element={<StarterPage />} />
+      {user ? (
+        <>
+          {/* Protected Routes */}
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='*' element={<Navigate to='/dashboard' replace />} />
+        </>
+      ) : (
+        <>
+          {/* Public Routes */}
+          <Route path='/' element={<StarterPage />} />
+          <Route path='/' element={<AuthUI />}>
+            <Route path='sign-in' element={<SignIn />} />
+            <Route path='sign-up' element={<SignUp />} />
+          </Route>
 
-      {/* Auth Page */}
-      <Route path='/' element={<AuthUI />}>
-        <Route path='sign-in' element={<SignIn />} />
-        <Route path='sign-up' element={<SignUp />} />
-      </Route>
-
-      {/* Protected Pages */}
-      <Route
-        path='/project'
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
+          {/* Catch-all */}
+          <Route path='*' element={<Navigate to='/' replace />} />
+        </>
+      )}
     </Routes>
   )
 }

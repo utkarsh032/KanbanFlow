@@ -1,5 +1,17 @@
 @import 'tailwindcss';
 
+:root {
+  /* Light Theme Colors */
+  --color-bg-light: #ffffff;
+  --color-text-light: #111111;
+  --color-border-light: #e5e7eb;
+
+  /* Dark Theme Colors */
+  --color-bg-dark: #111111;
+  --color-text-dark: #e5e5e5;
+  --color-border-dark: #333333;
+}
+
 .btn1,
 .btn2 {
   border: 1px solid #333;
