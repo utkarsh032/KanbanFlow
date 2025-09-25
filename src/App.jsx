@@ -6,6 +6,7 @@ import { SignIn } from './Components/AuthPage.jsx/SignIn'
 import SignUp from './Components/AuthPage.jsx/SignUp'
 import { useAuth } from './context/AuthContext'
 import { Dashboard } from './Components/DashBoard/Dashboard'
+import BoardById from './Components/Board/BoardById'
 
 function App () {
   const { user } = useAuth()
@@ -14,8 +15,8 @@ function App () {
     <Routes>
       {user ? (
         <>
-          {/* Protected Routes */}
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/dashboard/BoardById/:id' element={<BoardById />} />
           <Route path='*' element={<Navigate to='/dashboard' replace />} />
         </>
       ) : (

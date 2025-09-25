@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+
+import { useState, useEffect } from 'react'
 import { CreateBoardForm } from '../Forms/CreateBoardForm'
 import { BoardLists } from '../DataLists/BoardLists'
 import { useTheme } from '../../context/ThemeContext'
@@ -23,37 +25,39 @@ export const Board = () => {
 
   const handleBoardCreate = data => {
     if (editIndex !== null) {
-      // Edit existing board
       const updatedBoards = boards.map((b, i) =>
         i === editIndex ? { ...b, ...data } : b
       )
       saveBoards(updatedBoards)
       setEditIndex(null)
     } else {
-      // Create new board
-      const updatedBoards = [...boards, data]
+      const newBoard = { id: uuidv4(), ...data }
+      const updatedBoards = [...boards, newBoard]
       saveBoards(updatedBoards)
     }
     setShowForm(false)
   }
 
-  const handleEdit = index => {
+  const handleEdit = id => {
+    const index = boards.findIndex(board => board.id === id)
     setEditIndex(index)
     setShowForm(true)
   }
 
-  const handleDuplicate = index => {
-    const boardToDuplicate = boards[index]
-    const duplicatedBoard = {
-      ...boardToDuplicate,
-      title: boardToDuplicate.title + ' (Copy)'
+  const handleDuplicate = id => {
+    const boardToDuplicate = boards.find(board => board.id === id)
+    if (boardToDuplicate) {
+      const duplicatedBoard = {
+        ...boardToDuplicate,
+        id: uuidv4(),
+        title: boardToDuplicate.title + ' (Copy)'
+      }
+      saveBoards([...boards, duplicatedBoard])
     }
-    const updatedBoards = [...boards, duplicatedBoard]
-    saveBoards(updatedBoards)
   }
 
-  const handleDelete = index => {
-    const updatedBoards = boards.filter((_, i) => i !== index)
+  const handleDelete = id => {
+    const updatedBoards = boards.filter(board => board.id !== id)
     saveBoards(updatedBoards)
   }
 

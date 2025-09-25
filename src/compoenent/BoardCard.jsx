@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
-import { FiMoreVertical, FiFolder, FiCalendar } from 'react-icons/fi'
+import { FiFolder, FiCalendar } from 'react-icons/fi'
+import { PiDotsThreeOutlineFill } from 'react-icons/pi'
+
 import { useTheme } from '../context/ThemeContext'
+import { Link } from 'react-router-dom'
 
 export const BoardCard = ({
+  id,
   title,
   description,
   lists,
@@ -16,18 +20,19 @@ export const BoardCard = ({
   const isDark = theme === 'dark'
 
   return (
-    <div
-      className={`flex flex-col border rounded-lg shadow-sm p-4 mb-4 ${
+    <Link
+      to={`/dashboard/BoardById/${id}`}
+      className={`flex flex-col border rounded-lg shadow-sm p-4   ${
         isDark
           ? 'bg-[var(--color-bg-dark)] text-[var(--color-text-dark)] border-gray-700'
           : 'bg-[var(--color-bg-light)] text-[var(--color-text-light)] border-gray-300'
       }`}
     >
       {/* Header */}
-      <div className='flex justify-between items-start mb-4'>
+      <div className='flex justify-between items-start mb-2'>
         <div>
           <h2
-            className={`text-lg font-semibold ${
+            className={`text-lg font-semibold line-clamp-1 ${
               isDark ? 'text-gray-100' : 'text-gray-900'
             }`}
           >
@@ -35,7 +40,7 @@ export const BoardCard = ({
           </h2>
           {description && (
             <p
-              className={`text-sm ${
+              className={`text-sm line-clamp-2 ${
                 isDark ? 'text-gray-400' : 'text-gray-500'
               }`}
             >
@@ -52,7 +57,7 @@ export const BoardCard = ({
               isDark ? 'hover:bg-gray-800' : 'hover:bg-gray-200'
             }`}
           >
-            <FiMoreVertical />
+            <PiDotsThreeOutlineFill />
           </button>
 
           {openMenu && (
@@ -95,7 +100,7 @@ export const BoardCard = ({
       </div>
 
       <div
-        className={`flex gap-6 text-sm ${
+        className={`flex gap-6 mt-6 text-sm ${
           isDark ? 'text-gray-400' : 'text-gray-600'
         }`}
       >
@@ -106,6 +111,6 @@ export const BoardCard = ({
           <FiCalendar /> <span>{tasks} Tasks</span>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
