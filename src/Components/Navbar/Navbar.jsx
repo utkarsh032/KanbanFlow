@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom'
 import { useTheme } from '../../context/ThemeContext'
 import { signOut } from 'firebase/auth'
 import { auth } from '../../FirebaseAuth/fireBaseAuth'
+import { useAuth } from '../../context/AuthContext'
 
 export const Navbar = () => {
   const { theme, toggleTheme } = useTheme()
@@ -25,6 +26,10 @@ export const Navbar = () => {
 
   const priorities = ['High', 'Medium', 'Low']
   const statuses = ['Overdue', 'Completed']
+
+  const { user } = useAuth()
+  const name =
+    user?.displayName || (user?.email ? user.email.split('@')[0] : 'User')
 
   const togglePriority = p =>
     setSelectedPriority(prev => (prev === p ? null : p))
@@ -45,7 +50,7 @@ export const Navbar = () => {
 
   return (
     <nav
-      className={`flex items-center gap-4 px-6 py-3 shadow-md ${
+      className={`flex items-center gap-4 px-6 py-3 shadow-md border-b border-gray-700 ${
         isDark
           ? 'bg-[var(--color-bg-dark)] text-[var(--color-text-dark)]'
           : 'bg-[var(--color-bg-light)] text-[var(--color-text-light)]'
@@ -175,7 +180,7 @@ export const Navbar = () => {
             alt='User'
             className='w-8 h-8 rounded-full'
           />
-          <p className='hidden md:block'>Utkarsh</p>
+          <p className='hidden md:block'>{name}</p>
         </button>
 
         {openMenu && (

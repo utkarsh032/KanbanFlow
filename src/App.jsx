@@ -4,8 +4,8 @@ import StarterPage from './Starter/StarterPage'
 import AuthUI from './UI/AuthUI'
 import { SignIn } from './Components/AuthPage.jsx/SignIn'
 import SignUp from './Components/AuthPage.jsx/SignUp'
-import { Dashboard } from './Components/Dashboard'
 import { useAuth } from './context/AuthContext'
+import { Dashboard } from './Components/DashBoard/Dashboard'
 
 function App () {
   const { user } = useAuth()
