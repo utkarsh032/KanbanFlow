@@ -6,7 +6,6 @@ import { SignIn } from './Components/AuthPage.jsx/SignIn'
 import SignUp from './Components/AuthPage.jsx/SignUp'
 import { useAuth } from './context/AuthContext'
 import { Dashboard } from './Components/DashBoard/Dashboard'
-import BoardById from './Components/Board/BoardById'
 
 function App () {
   const { user } = useAuth()
@@ -15,20 +14,30 @@ function App () {
     <Routes>
       {user ? (
         <>
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/dashboard/BoardById/:id' element={<BoardById />} />
+          {/* Dashboard handles its own routing */}
+          <Route path='/dashboard/*' element={<Dashboard />} />
           <Route path='*' element={<Navigate to='/dashboard' replace />} />
         </>
       ) : (
         <>
           {/* Public Routes */}
           <Route path='/' element={<StarterPage />} />
-          <Route path='/' element={<AuthUI />}>
-            <Route path='sign-in' element={<SignIn />} />
-            <Route path='sign-up' element={<SignUp />} />
-          </Route>
-
-          {/* Catch-all */}
+          <Route
+            path='/sign-in'
+            element={
+              <AuthUI>
+                <SignIn />
+              </AuthUI>
+            }
+          />
+          <Route
+            path='/sign-up'
+            element={
+              <AuthUI>
+                <SignUp />
+              </AuthUI>
+            }
+          />
           <Route path='*' element={<Navigate to='/' replace />} />
         </>
       )}

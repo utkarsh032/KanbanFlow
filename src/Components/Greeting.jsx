@@ -1,43 +1,24 @@
-import React from 'react'
-import { useAuth } from '../context/AuthContext'
-import { useTheme } from '../context/ThemeContext'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
-export const Greeting = ({
-  title = 'Welcome back',
-  subtitle = 'Manage your projects, track tasks, and stay productive with your Kanban boards.'
-}) => {
-  const { theme, toggleTheme } = useTheme()
-  const isDark = theme === 'dark'
+export default function Greeting () {
+  const { id } = useParams()
+  const [board, setBoard] = useState(null)
 
-  const { user } = useAuth()
-  const name =
-    user?.displayName || (user?.email ? user.email.split('@')[0] : 'Guest')
+  useEffect(() => {
+    const boards = JSON.parse(localStorage.getItem('boards')) || []
+    const foundBoard = boards.find(b => b.id === id)
+    setBoard(foundBoard)
+  }, [id])
+
+  if (!board) return <p className='p-4'>Board not found.</p>
 
   return (
-    <div
-      className={`p-8 border-b shadow-2xl border-gray-900 ${
-        isDark
-          ? 'bg-[var(--color-bg-dark)] text-[var(--color-text-dark)]'
-          : 'bg-[var(--color-bg-light)] text-[var(--color-text-light)]'
-      }`}
-    >
-      <h1
-        className={`text-3xl font-semibold ${
-          isDark ? 'text-gray-100' : 'text-gray-900'
-        }`}
-      >
-        {title}, <span className='text-indigo-400'>{name}</span>!
-      </h1>
-
-      {subtitle && (
-        <p
-          className={`mt-2 leading-relaxed ${
-            isDark ? 'text-gray-400' : 'text-gray-600'
-          }`}
-        >
-          {subtitle}
-        </p>
-      )}
+    <div className='p-6'>
+      <h1 className='text-2xl font-bold'>{board.title}</h1>
+      <p className='mt-2 text-gray-600'>
+        {board.description || 'No description provided.'}
+      </p>
     </div>
   )
 }
