@@ -22,22 +22,12 @@ function App () {
         <>
           {/* Public Routes */}
           <Route path='/' element={<StarterPage />} />
-          <Route
-            path='/sign-in'
-            element={
-              <AuthUI>
-                <SignIn />
-              </AuthUI>
-            }
-          />
-          <Route
-            path='/sign-up'
-            element={
-              <AuthUI>
-                <SignUp />
-              </AuthUI>
-            }
-          />
+          {/* Auth Ui */}
+          <Route path='/' element={<AuthUI />}>
+            <Route path='sign-in' element={<SignIn />} />
+            <Route path='sign-up' element={<SignUp />} />
+          </Route>
+          {/*  */}
           <Route path='*' element={<Navigate to='/' replace />} />
         </>
       )}

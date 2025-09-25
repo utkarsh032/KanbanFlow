@@ -42,7 +42,7 @@ export default function BoardById () {
 
   return (
     <div
-      className={`p-4 ${
+      className={`p-4 h-screen ${
         isDark
           ? 'bg-[var(--color-bg-dark)] text-[var(--color-text-dark)]'
           : 'bg-[var(--color-bg-light)] text-[var(--color-text-light)]'

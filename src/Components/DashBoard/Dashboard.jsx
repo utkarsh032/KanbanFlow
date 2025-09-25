@@ -5,7 +5,7 @@ import BoardById from '../Board/ID/BoardById'
 
 export const Dashboard = () => {
   return (
-    <div>
+    <div className=''>
       <Navbar />
       <Routes>
         <Route index element={<Board />} />

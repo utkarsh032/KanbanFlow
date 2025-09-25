@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useTheme } from '../../context/ThemeContext'
+import { FiPlus } from 'react-icons/fi'
 
 export const CreateListForm = ({ onAdd }) => {
   const { theme } = useTheme()
@@ -23,7 +24,7 @@ export const CreateListForm = ({ onAdd }) => {
   return showForm ? (
     <form
       onSubmit={handleSubmit}
-      className={`border-dotted border-2 p-4 rounded-md bg-transparent text-center w-1/4 ${containerClass}`}
+      className={`border-dashed border-2 p-4 rounded-md bg-transparent text-center w-1/4 ${containerClass}`}
     >
       <input
         type='text'
@@ -58,10 +59,12 @@ export const CreateListForm = ({ onAdd }) => {
     </form>
   ) : (
     <div
-      className={`border-dotted border-2 p-4 m-4 rounded-md text-center cursor-pointer w-1/4 ${containerClass}`}
+      className={`w-80 h-[10vh] flex items-center justify-center rounded-xl border-2 border-dashed transition ${containerClass}`}
       onClick={() => setShowForm(true)}
     >
-      <button className='text-sm font-medium'>+ Add Another List</button>
+      <button className='text-md font-semibold flex items-center gap-2'>
+        <FiPlus /> Add Another List
+      </button>
     </div>
   )
 }

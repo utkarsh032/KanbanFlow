@@ -7,7 +7,7 @@ import {
   FiSettings,
   FiFilter
 } from 'react-icons/fi'
-import { KanbanFlow } from '../Logo/KanbanFlow'
+import { KanbanFlowLogo } from '../Logo/KanbanFlowLogo'
 import { Link } from 'react-router-dom'
 import { useTheme } from '../../context/ThemeContext'
 import { signOut } from 'firebase/auth'
@@ -58,7 +58,7 @@ export const Navbar = () => {
     >
       {/* Logo */}
       <div className='flex items-center'>
-        <KanbanFlow />
+        <KanbanFlowLogo />
       </div>
 
       {/* Search */}

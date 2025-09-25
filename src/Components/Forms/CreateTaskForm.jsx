@@ -17,14 +17,14 @@ export const CreateTaskForm = ({ boardId, listId, onAddTask }) => {
     if (!taskTitle.trim()) return
 
     const newTask = {
-      id: Date.now().toString(), // or uuid
+      id: Date.now().toString(),
       title: taskTitle,
       description,
       priority,
       date: dueDate || new Date().toISOString().split('T')[0]
     }
 
-    onAddTask(boardId, listId, newTask)
+    onAddTask(newTask)
 
     // reset form
     setTaskTitle('')

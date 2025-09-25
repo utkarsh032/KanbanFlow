@@ -31,7 +31,18 @@ export const Board = () => {
       saveBoards(updatedBoards)
       setEditIndex(null)
     } else {
-      const newBoard = { id: uuidv4(), ...data }
+      const defaultLists = [
+        { id: uuidv4(), title: 'To Do', tasks: [] },
+        { id: uuidv4(), title: 'In Progress', tasks: [] },
+        { id: uuidv4(), title: 'Done', tasks: [] }
+      ]
+
+      const newBoard = {
+        id: uuidv4(),
+        ...data,
+        lists: defaultLists
+      }
+
       const updatedBoards = [...boards, newBoard]
       saveBoards(updatedBoards)
     }

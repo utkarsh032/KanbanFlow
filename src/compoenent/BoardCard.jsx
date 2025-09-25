@@ -20,8 +20,7 @@ export const BoardCard = ({
   const isDark = theme === 'dark'
 
   return (
-    <Link
-      to={`/dashboard/BoardById/${id}`}
+    <div
       className={`flex flex-col border rounded-lg shadow-sm p-4   ${
         isDark
           ? 'bg-[var(--color-bg-dark)] text-[var(--color-text-dark)] border-gray-700'
@@ -30,7 +29,7 @@ export const BoardCard = ({
     >
       {/* Header */}
       <div className='flex justify-between items-start mb-2'>
-        <div>
+        <Link to={`/dashboard/BoardById/${id}`}>
           <h2
             className={`text-lg font-semibold line-clamp-1 ${
               isDark ? 'text-gray-100' : 'text-gray-900'
@@ -47,7 +46,7 @@ export const BoardCard = ({
               {description}
             </p>
           )}
-        </div>
+        </Link>
 
         {/* Menu button */}
         <div className='relative'>
@@ -105,12 +104,12 @@ export const BoardCard = ({
         }`}
       >
         <div className='flex items-center gap-2'>
-          <FiFolder /> <span>{lists} Lists</span>
+          <FiFolder /> <span>{lists?.length || 0} Lists</span>
         </div>
         <div className='flex items-center gap-2'>
-          <FiCalendar /> <span>{tasks} Tasks</span>
+          <FiCalendar /> <span>{tasks?.length || 0} Tasks</span>
         </div>
       </div>
-    </Link>
+    </div>
   )
 }

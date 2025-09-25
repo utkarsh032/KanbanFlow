@@ -79,7 +79,7 @@ export const CreateBoardForm = ({ onSubmit, onCancel, initialData }) => {
           </button>
           <button
             type='submit'
-            className='px-4 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-500 transition'
+            className='px-4 py-2 rounded-md bg-gray-600 text-white hover:bg-gray-500 transition'
           >
             {initialData ? 'Update Board' : 'Create Board'}
           </button>

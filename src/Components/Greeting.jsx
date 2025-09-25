@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useTheme } from '../context/ThemeContext'
 
 export default function Greeting () {
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
   const { id } = useParams()
   const [board, setBoard] = useState(null)
 
@@ -15,8 +18,14 @@ export default function Greeting () {
 
   return (
     <div className='p-6'>
-      <h1 className='text-2xl font-bold'>{board.title}</h1>
-      <p className='mt-2 text-gray-600'>
+      <h1
+        className={`text-2xl font-bold ${
+          isDark ? 'text-gray-100' : 'text-gray-900'
+        }`}
+      >
+        {board.title}
+      </h1>
+      <p className={`mt-2 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
         {board.description || 'No description provided.'}
       </p>
     </div>

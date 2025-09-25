@@ -2,7 +2,7 @@ import { SlEnergy } from 'react-icons/sl'
 import { AiOutlineTeam } from 'react-icons/ai'
 import { SiGoogleanalytics } from 'react-icons/si'
 
-import { KanbanFlow } from './Logo/KanbanFlow'
+import { KanbanFlowLogo } from './Logo/KanbanFlowLogo'
 
 const flowData = [
   {
@@ -27,7 +27,7 @@ export const AuthBaseFlow = () => {
     <div className='flex flex-col justify-between h-screen px-8 py-6 bg-[#0f0f0f] text-gray-200'>
       <div>
         {/* Logo */}
-        <KanbanFlow />
+        <KanbanFlowLogo />
 
         {/* Features */}
         <div className='mt-10 space-y-6'>
