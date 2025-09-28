@@ -1,0 +1,94 @@
+[
+  {
+    "boardName": "Web Development Project",
+    "description": "Board to track frontend and backend tasks for the website.",
+    "lists": [
+      {
+        "listName": "To Do",
+        "tasks": [
+          {
+            "title": "Set up project repo",
+            "assignedTo": "Utkarsh",
+            "status": "pending"
+          },
+          {
+            "title": "Design wireframes",
+            "assignedTo": "Ravi",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "listName": "In Progress",
+        "tasks": [
+          {
+            "title": "Implement login system",
+            "assignedTo": "Neha",
+            "status": "in-progress"
+          },
+          {
+            "title": "Navbar UI setup",
+            "assignedTo": "Utkarsh",
+            "status": "in-progress"
+          }
+        ]
+      },
+      {
+        "listName": "Done",
+        "tasks": [
+          {
+            "title": "Setup Tailwind & React",
+            "assignedTo": "Ravi",
+            "status": "done"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "boardName": "Marketing Campaign",
+    "description": "Planning and tracking tasks for new product launch campaign.",
+    "lists": [
+      {
+        "listName": "Ideas",
+        "tasks": [
+          {
+            "title": "Social media promotion plan",
+            "assignedTo": "Priya",
+            "status": "pending"
+          },
+          {
+            "title": "Email marketing draft",
+            "assignedTo": "Ankit",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "listName": "Execution",
+        "tasks": [
+          {
+            "title": "Run Facebook ads",
+            "assignedTo": "Priya",
+            "status": "in-progress"
+          },
+          {
+            "title": "Prepare launch video",
+            "assignedTo": "Ankit",
+            "status": "in-progress"
+          }
+        ]
+      },
+      {
+        "listName": "Completed",
+        "tasks": [
+          {
+            "title": "Market research",
+            "assignedTo": "Rahul",
+            "status": "done"
+          }
+        ]
+      }
+    ]
+  }
+]

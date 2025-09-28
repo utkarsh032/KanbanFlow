@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { login } from '../../services/authService'
+import { RiEyeCloseFill, RiEyeFill } from 'react-icons/ri'
+import { TfiEmail } from 'react-icons/tfi'
 
 export const SignIn = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
 
   const handleLogin = async e => {
@@ -30,22 +33,39 @@ export const SignIn = () => {
 
         {/* Form */}
         <form className='space-y-4' onSubmit={handleLogin}>
-          <input
-            className='w-full border border-gray-600 rounded-md px-3 py-2 bg-transparent text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500'
-            type='email'
-            placeholder='Email address'
-            required
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-          <input
-            className='w-full border border-gray-600 rounded-md px-3 py-2 bg-transparent text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500'
-            type='password'
-            placeholder='Password'
-            required
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
+          {/* Email */}
+          <div className='flex gap-2 items-center w-full border border-gray-600 rounded-md px-3 py-2 bg-transparent text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500'>
+            <input
+              className='border-none bg-transparent w-full focus:outline-none'
+              type='email'
+              placeholder='Email address'
+              required
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+            <TfiEmail className='text-gray-400' />
+          </div>
+
+          {/* Password */}
+          <div className='flex items-center gap-2 w-full border border-gray-600 rounded-md px-3 py-2 bg-transparent text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500'>
+            <input
+              className='border-none bg-transparent w-full focus:outline-none'
+              type={showPassword ? 'text' : 'password'} // 👈 toggle type
+              placeholder='Password'
+              required
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+            <button
+              type='button'
+              className='text-gray-400'
+              onClick={() => setShowPassword(prev => !prev)} // 👈 toggle handler
+            >
+              {showPassword ? <RiEyeFill /> : <RiEyeCloseFill />}
+            </button>
+          </div>
+
+          {/* Submit */}
           <button
             className='w-full bg-gray-200 text-gray-900 py-2 rounded-md hover:bg-gray-300 transition'
             type='submit'

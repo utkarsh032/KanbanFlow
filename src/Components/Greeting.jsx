@@ -1,18 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
+import { useAuth } from '../context/AuthContext'
 
 export default function Greeting () {
   const { theme } = useTheme()
   const isDark = theme === 'dark'
   const { id } = useParams()
+  const { user } = useAuth()
+
   const [board, setBoard] = useState(null)
 
+  const getStorageKey = () => {
+    if (!user) return 'boards'
+    return `boards_${user.uid}`
+  }
+
   useEffect(() => {
-    const boards = JSON.parse(localStorage.getItem('boards')) || []
+    const raw = localStorage.getItem(getStorageKey())
+    let boards = []
+    try {
+      boards = JSON.parse(raw) || []
+    } catch {
+      boards = []
+    }
     const foundBoard = boards.find(b => b.id === id)
-    setBoard(foundBoard)
-  }, [id])
+    setBoard(foundBoard || null)
+  }, [id, user])
 
   if (!board) return <p className='p-4'>Board not found.</p>
 

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { CreateBoardForm } from '../Forms/CreateBoardForm'
 import { BoardLists } from '../DataLists/BoardLists'
 import { useTheme } from '../../context/ThemeContext'
+import { auth } from '../../FirebaseAuth/fireBaseAuth'
 
 export const Board = () => {
   const [boards, setBoards] = useState([])
@@ -14,13 +15,21 @@ export const Board = () => {
   const isDark = theme === 'dark'
 
   useEffect(() => {
-    const storedBoards = JSON.parse(localStorage.getItem('boards')) || []
-    setBoards(storedBoards)
+    const user = auth.currentUser
+    if (user) {
+      const userKey = `boards_${user.uid}`
+      const storedBoards = JSON.parse(localStorage.getItem(userKey)) || []
+      setBoards(storedBoards)
+    }
   }, [])
 
   const saveBoards = updatedBoards => {
+    const user = auth.currentUser
+    if (!user) return
+
+    const userKey = `boards_${user.uid}`
     setBoards(updatedBoards)
-    localStorage.setItem('boards', JSON.stringify(updatedBoards))
+    localStorage.setItem(userKey, JSON.stringify(updatedBoards))
   }
 
   const handleBoardCreate = data => {
@@ -74,7 +83,7 @@ export const Board = () => {
 
   return (
     <div
-      className={`px-6 py-6 shadow-md border-b border-gray-700 min-h-screen ${
+      className={`px-6 py-6 shadow-md border-b  border-gray-700 min-h-screen ${
         isDark
           ? 'bg-[var(--color-bg-dark)] text-[var(--color-text-dark)]'
           : 'bg-[var(--color-bg-light)] text-[var(--color-text-light)]'

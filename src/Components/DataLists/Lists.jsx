@@ -10,6 +10,7 @@ export default function Lists ({ lists, boardId, onUpdateLists }) {
 
   const [editListId, setEditListId] = useState(null)
   const [editTitle, setEditTitle] = useState('')
+  const [draggedTask, setDraggedTask] = useState(null)
 
   const updateLists = updatedLists => {
     onUpdateLists(updatedLists)
@@ -72,6 +73,40 @@ export default function Lists ({ lists, boardId, onUpdateLists }) {
     updateLists(updatedLists)
   }
 
+  // Drag handlers
+  const handleDragStart = (task, sourceListId) => {
+    setDraggedTask({ ...task, sourceListId })
+  }
+
+  const handleDrop = targetListId => {
+    if (!draggedTask) return
+
+    // Remove from source list
+    let updatedLists = lists.map(list => {
+      if (list.id === draggedTask.sourceListId) {
+        return {
+          ...list,
+          tasks: list.tasks.filter(t => t.id !== draggedTask.id)
+        }
+      }
+      return list
+    })
+
+    // Add to target list
+    updatedLists = updatedLists.map(list => {
+      if (list.id === targetListId) {
+        return {
+          ...list,
+          tasks: [...list.tasks, { ...draggedTask }]
+        }
+      }
+      return list
+    })
+
+    updateLists(updatedLists)
+    setDraggedTask(null)
+  }
+
   return (
     <div className='flex gap-4 px-4'>
       {lists.length === 0 ? (
@@ -93,6 +128,8 @@ export default function Lists ({ lists, boardId, onUpdateLists }) {
             className={`border border-gray-700 rounded-lg w-82 ${
               isDark ? 'bg-transparent text-gray-100' : 'bg-white text-gray-900'
             }`}
+            onDragOver={e => e.preventDefault()}
+            onDrop={() => handleDrop(list.id)}
           >
             <div className='p-2 border-b border-gray-700 flex justify-between items-center'>
               <div>
@@ -147,6 +184,7 @@ export default function Lists ({ lists, boardId, onUpdateLists }) {
                 handleEditTask(list.id, taskId, updatedTask)
               }
               onDeleteTask={taskId => handleDeleteTask(list.id, taskId)}
+              onDragStart={task => handleDragStart(task, list.id)}
             />
 
             {/* Add task form */}

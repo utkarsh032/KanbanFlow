@@ -50,7 +50,7 @@ export const Navbar = () => {
 
   return (
     <nav
-      className={`flex items-center gap-4 px-6 py-3 shadow-md border-b border-gray-700 ${
+      className={`fixed top-0 left-0 right-0 h-16 flex items-center gap-4 px-6 shadow-md border-b border-gray-700 z-50 ${
         isDark
           ? 'bg-[var(--color-bg-dark)] text-[var(--color-text-dark)]'
           : 'bg-[var(--color-bg-light)] text-[var(--color-text-light)]'

@@ -47,9 +47,9 @@ export const CreateBoardForm = ({ onSubmit, onCancel, initialData }) => {
           placeholder='Board Title'
           defaultValue={initialData?.title || ''}
           required
-          className={`w-full px-3 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+          className={`w-full px-3 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-gray-500 ${
             isDark
-              ? 'bg-gray-800 text-gray-200 border-gray-600'
+              ? ' text-gray-200 border-gray-600'
               : 'bg-white text-gray-900 border-gray-300'
           }`}
         />
@@ -58,9 +58,9 @@ export const CreateBoardForm = ({ onSubmit, onCancel, initialData }) => {
           name='description'
           placeholder='Description (Optional)'
           defaultValue={initialData?.description || ''}
-          className={`w-full px-3 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+          className={`w-full px-3 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-gray-500 ${
             isDark
-              ? 'bg-gray-800 text-gray-200 border-gray-600'
+              ? ' text-gray-200 border-gray-600'
               : 'bg-white text-gray-900 border-gray-300'
           }`}
         />
@@ -79,7 +79,7 @@ export const CreateBoardForm = ({ onSubmit, onCancel, initialData }) => {
           </button>
           <button
             type='submit'
-            className='px-4 py-2 rounded-md bg-gray-600 text-white hover:bg-gray-500 transition'
+            className='px-4 py-2 rounded-md bg-gray-100 text-gray-900 hover:bg-gray-300 transition'
           >
             {initialData ? 'Update Board' : 'Create Board'}
           </button>

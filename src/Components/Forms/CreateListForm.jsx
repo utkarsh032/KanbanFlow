@@ -24,14 +24,14 @@ export const CreateListForm = ({ onAdd }) => {
   return showForm ? (
     <form
       onSubmit={handleSubmit}
-      className={`border-dashed border-2 p-4 rounded-md bg-transparent text-center w-1/4 ${containerClass}`}
+      className={`border-dashed border-2 p-4 rounded-md bg-transparent text-center w-80 ${containerClass}`}
     >
       <input
         type='text'
         placeholder='Enter list title...'
         value={title}
         onChange={e => setTitle(e.target.value)}
-        className={`border p-2 rounded-lg w-full ${
+        className={`border p-2 rounded-lg w-72 ${
           isDark
             ? ' text-gray-100  border-gray-700'
             : 'bg-white text-gray-900 border-gray-300'
@@ -40,14 +40,14 @@ export const CreateListForm = ({ onAdd }) => {
       <div className='flex gap-2 mt-2 '>
         <button
           type='submit'
-          className='px-3 py-1 bg-gray-300 text-black rounded hover:bg-gray-400'
+          className='px-3 py-1 bg-gray-300 text-black rounded hover:bg-gray-400 w-24'
         >
           Add List
         </button>
         <button
           type='button'
           onClick={() => setShowForm(false)}
-          className={`px-3 py-1 border rounded ${
+          className={`px-3 py-1 border rounded w-20 ${
             isDark
               ? 'border-gray-600 text-gray-300'
               : 'border-gray-300 text-gray-700 hover:bg-gray-100'
@@ -62,7 +62,7 @@ export const CreateListForm = ({ onAdd }) => {
       className={`w-80 h-[10vh] flex items-center justify-center rounded-xl border-2 border-dashed transition ${containerClass}`}
       onClick={() => setShowForm(true)}
     >
-      <button className='text-md font-semibold flex items-center gap-2'>
+      <button className='w-80 text-md font-semibold flex items-center gap-2  justify-center'>
         <FiPlus /> Add Another List
       </button>
     </div>
