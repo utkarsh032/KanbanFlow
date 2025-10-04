@@ -3,6 +3,7 @@ import { Navbar } from '../Navbar/Navbar'
 import { Board } from '../Board/Board'
 import BoardById from '../Board/ID/BoardById'
 import { useTheme } from '../../context/ThemeContext'
+import BoardSettings from '../Settings/BoardSettings'
 
 export const Dashboard = () => {
   const { theme } = useTheme()
