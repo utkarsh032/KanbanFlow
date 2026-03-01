@@ -12,6 +12,42 @@
   --color-border-dark: #333333;
 }
 
+/* Navbar Styles */
+nav {
+  backdrop-filter: blur(10px);
+}
+
+nav button {
+  position: relative;
+  overflow: hidden;
+}
+
+nav button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+nav button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Mobile responsive text truncation */
+@media (max-width: 640px) {
+  nav {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
 .btn1,
 .btn2 {
   border: 1px solid #333;
@@ -99,3 +135,4 @@
   line-height: 1.5;
   color: #aaa;
 }
+
